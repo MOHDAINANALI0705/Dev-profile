@@ -10,7 +10,7 @@ export default function SignupPage() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [error, setError] = useState('')
+    const [Error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
@@ -20,7 +20,6 @@ export default function SignupPage() {
 
         if (!username.trim()) {
             setError('Please enter a username')
-            return
         }
 
         const trimmedEmail = email.trim()
@@ -28,17 +27,14 @@ export default function SignupPage() {
 
         if (!emailRegex.test(trimmedEmail)) {
             setError('Please enter a valid email address')
-            return
         }
 
         if (password.length < 8) {
             setError('Password must be at least 8 characters')
-            return
         }
 
         if (password !== confirmPassword) {
             setError('Passwords do not match')
-            return
         }
 
         setLoading(true)
@@ -68,9 +64,9 @@ export default function SignupPage() {
             <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">Create Account</h1>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-                {error && (
+                {Error && (
                     <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-                        {error}
+                        {Error}
                     </div>
                 )}
 

@@ -36,13 +36,6 @@ const savedUser = await NewUser.save();
             id:savedUser._id.toString(),
             username,
             email,
-        //     phoneNumber: "",
-        //     address: "",
-        //     photoUrl: "",
-        //     salesOfday: "",
-        //     totalSales: "",
-        //     totalOrders: "",
-        // totalProducts:""
         })
        const savedDetails = Detail.save();
        console.log("User registered:", savedUser);
