@@ -18,11 +18,11 @@ export const sendEmail = async({email,emailType,userId}:any) =>{
   }
 
  const transport = nodemailer.createTransport({
-  host: "smtp.ethereal.email",
+  host: "gmail",
   port: 587,
   auth: {
-  user: 'flossie9@ethereal.email',
-        pass: 'zT6pkw3VyFfDDbZv8X'
+  user: process.env.email,
+  pass: process.env.password
   }
 });
 
