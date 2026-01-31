@@ -42,7 +42,7 @@ const savedUser = await NewUser.save();
        // Send verification email
          await sendEmail({email,emailType:"VERIFY",userId:savedUser._id})
 
-         return NextResponse.json({ message: "User registered successfully. Please check your email to verify your account." }, { status: 201 });
+         return NextResponse.json({ error: "User registered successfully. Please check your email to verify your account." }, { status: 201 });
        
     } catch (err) {
         console.error( err);
