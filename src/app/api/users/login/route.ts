@@ -3,8 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 import User from "@/src/models/userModel";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { cookies } from "next/headers"; 
-import { Session } from "inspector/promises";
 
 connect();
 
