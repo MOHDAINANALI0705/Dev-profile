@@ -25,7 +25,7 @@ export default function SignupPage() {
             await axios.post('/api/users/signup', {
                 username: username.trim(),
                 email: trimmedEmail,
-                password,,
+                password,
                 confirmPassword
             })
 
