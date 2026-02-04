@@ -12,8 +12,7 @@ export async function POST(request: NextRequest) {
         const body = await request.json();
        
         const {username, email, password,confirmPassword} = body;
-
-         if (!username.trim()) {
+  if (!username.trim()) {
             return NextResponse.json({ message : "Please enter a username" }, { status: 400 });
         }
 
@@ -31,12 +30,12 @@ export async function POST(request: NextRequest) {
              return NextResponse.json({ message : "Passwords do not match" }, { status: 400 });
         }
         if (!email || !password) {
-            return NextResponse.json({ error: "Missing credentials" }, { status: 400 });
+            return NextResponse.json({ message : "Missing credentials" }, { status: 400 });
         }
 
         const user = await User.findOne({email});
         if (user) {
-            return NextResponse.json({ error: "User already exists" }, { status: 400 });
+            return NextResponse.json({ message : "User already exists" }, { status: 400 });
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -59,7 +58,7 @@ const savedUser = await NewUser.save();
        // Send verification email
          await sendEmail({email,emailType:"VERIFY",userId:savedUser._id})
 
-         return NextResponse.json({ error: "User registered successfully. Please check your email to verify your account." }, { status: 201 });
+         return NextResponse.json({ message : "User registered successfully. Please check your email to verify your account." }, { status: 201 });
        
     } catch (err) {
         console.error( err);
