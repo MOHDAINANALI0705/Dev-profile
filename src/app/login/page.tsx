@@ -9,6 +9,7 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [Error, setError] = useState('')
     const router = useRouter()
 
     const handleLogin = async (e: React.FormEvent) => {
@@ -23,8 +24,8 @@ export default function LoginPage() {
             console.log(response.data)
             toast.success('Logged in successfully')
             router.push('/profile')
-        } catch (err: any) {
-            const errorMessage = err.response?.data?.message || err.message   
+        } catch (err : any) {
+                 const errorMessage = err.response?.data?.message || err.message   
                            setError(errorMessage)
                            toast.error(errorMessage)
         } finally {
@@ -33,26 +34,37 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-md w-96">
-                <h1 className="text-2xl font-bold mb-6">Login</h1>
-                <form onSubmit={handleLogin}>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full px-4 py-2 mb-4 border rounded-lg focus:outline-none"
-                        required
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="w-full px-4 py-2 mb-6 border rounded-lg focus:outline-none"
-                        required
-                    />
+        <>
+        <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+            <div className="bg-white w-full max-w-md h-[85vh] p-8 rounded-lg shadow-md flex flex-col justify-around">
+                <h1 className="text-2xl font-bold mb-2 text-center">Login</h1>
+
+                <form onSubmit={handleLogin} className="flex flex-col justify-around h-[70%]">
+                    {Error && (
+                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                            {Error}
+                        </div>
+                    )}
+
+                    <div className="flex flex-col gap-4">
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full px-4 py-2 border rounded-lg focus:outline-none"
+                            required
+                        />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="w-full px-4 py-2 border rounded-lg focus:outline-none"
+                            required
+                        />
+                    </div>
+
                     <button
                         type="submit"
                         disabled={loading}
@@ -63,5 +75,6 @@ export default function LoginPage() {
                 </form>
             </div>
         </div>
+        </>
     )
 }
