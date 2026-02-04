@@ -31,8 +31,8 @@ export default function SignupPage() {
 
             toast.success('Signup successful!')
             router.push('/login')
-        } catch (err) {
-             const errorMessage = err.response?.data?.message || err.message   
+        } catch (err: any) {
+            const errorMessage = err.response?.data?.message || err.message   
             setError(errorMessage)
             toast.error(errorMessage)
         } finally {
