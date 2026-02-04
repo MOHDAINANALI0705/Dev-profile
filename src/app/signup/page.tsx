@@ -18,28 +18,7 @@ export default function SignupPage() {
         e.preventDefault()
         setError('')
 
-        if (!username.trim()) {
-            setError('Please enter a username')
-            return
-        }
-
         const trimmedEmail = email.trim()
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-        if (!emailRegex.test(trimmedEmail)) {
-            setError('Please enter a valid email address')
-            return
-        }
-
-        if (password.length < 8) {
-            setError('Password must be at least 8 characters')
-            return
-        }
-
-        if (password !== confirmPassword) {
-            setError('Passwords do not match')
-            return
-        }
 
         setLoading(true)
         try {
@@ -52,9 +31,7 @@ export default function SignupPage() {
             toast.success('Signup successful!')
             router.push('/login')
         } catch (err) {
-            const errorMessage = axios.isAxiosError(err) 
-                ? err.response?.data?.message || err.message 
-                : 'An error occurred'
+             const errorMessage = err.response?.data?.message || err.message   
             setError(errorMessage)
             toast.error(errorMessage)
         } finally {
