@@ -32,7 +32,7 @@ const mailOptions = {
     to: email,
     subject: emailType === "VERIFY" ? "Verify your email" : "Reset your password",
     html: `<p>Click here <a href="${process.env.DOMAIN}/verifyEmail?token=${hashedToken}"> here </a> to ${emailType === "VERIFY" ? "Please verify your email address" : "reset your password"} or copy and paste the link below in your browser 
-    <br> ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
+    <br> ${process.env.DOMAIN}/verifyEmail?token=${hashedToken}
     </p> `
   };
 
